@@ -13,3 +13,7 @@ logging.level:
   org.springframework.web.reactive.function.client: TRACE
 
 server.port: 8020
+eureka:
+  client:
+    service-url:
+      defaultZone: http://admin:pwd@localhost:8761/eureka
