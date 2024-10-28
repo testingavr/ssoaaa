@@ -7,12 +7,16 @@ spring:
         jwt:
           jwk-set-uri: http://localhost:8080/realms/demo/protocol/openid-connect/certs
 
+logstash.host: logstash:9999
+logger:
+  name: testapp
+
 logging.level:
   org.springframework.cloud.gateway: DEBUG
   org.springframework.security: DEBUG
   org.springframework.web.reactive.function.client: TRACE
 
-server.port: 8020
+server.port: 8021
 eureka:
   client:
     service-url:

@@ -1,5 +1,7 @@
 package com.avrora.testapp;
 
+import ch.qos.logback.classic.Logger;
+import ch.qos.logback.classic.LoggerContext;
 import org.apache.tomcat.util.buf.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -26,6 +28,7 @@ public class CallerController {
 */
     @GetMapping("/ping")
     public String ping() {
+        Logger logger = new LoggerContext().getLogger(CallerController.class);
         SecurityContext context = SecurityContextHolder.getContext();
         Authentication authentication = context.getAuthentication();
 
@@ -36,6 +39,8 @@ public class CallerController {
                 .bodyToMono(String.class)
                 .block();*/
         var arr =  authentication.getAuthorities().stream().map(GrantedAuthority::getAuthority);
-        return "Callme scopes: " + StringUtils.join(arr.toArray(String[]::new))   ;
+        var str = "Callme scopes: " + StringUtils.join(arr.toArray(String[]::new));
+        logger.info("****** "+str+" *******");
+        return str  ;
     }
 }

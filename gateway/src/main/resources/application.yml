@@ -37,6 +37,7 @@ spring:
             client-secret: IWLSnakHG8aNTWNaWuSj0a11UY4lzxd9
             authorization-grant-type: authorization_code
             scope: openid
+            redirect-uri: "{baseUrl}/login/oauth2/code/spring-with-test-scope"
 #          keycloak-without-test-scope:
 #            provider: keycloak
 #            client-id: spring-without-test-scope
@@ -45,6 +46,10 @@ spring:
 #            redirect-uri: "{baseUrl}/login/oauth2/code/spring-without-test-scope"
 
 server.port: 8060
+logstash.host: logstash:9999
+logger:
+  name: gateway
+
 
 eureka:
   client:
