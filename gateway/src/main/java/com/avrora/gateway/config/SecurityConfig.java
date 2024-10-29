@@ -34,7 +34,7 @@ public class SecurityConfig {
 
     @Bean
     public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
-        http.authorizeExchange(auth -> auth.pathMatchers("login/**").permitAll().pathMatchers("login1").permitAll().anyExchange().authenticated())
+        http.authorizeExchange(auth -> auth.pathMatchers("login/**").permitAll().pathMatchers("api/login/**").permitAll().anyExchange().authenticated())
                 .oauth2Login(withDefaults())
                 .oauth2ResourceServer((oauth2) -> oauth2.jwt(Customizer.withDefaults()));
         http.csrf(ServerHttpSecurity.CsrfSpec::disable);

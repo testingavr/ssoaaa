@@ -16,8 +16,8 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class LoginService {
 
-    @Value("${spring.security.oauth2.client.provider.keycloak.issuer-uri}")
-    private String loginUrl;
+    @Value("${spring.security.oauth2.client.provider.keycloak.token-uri}")
+    private String tokenUrl;
     @Value("${spring.security.oauth2.client.registration.spring-with-test-scope.client-secret}")
     private String clientSecret;
     @Value("${spring.security.oauth2.client.registration.spring-with-test-scope.authorization-grant-type}")
@@ -37,11 +37,11 @@ public class LoginService {
         map.add("username", request.getUsername());
         map.add("password", request.getPassword());
         map.add("client_id", clientId);
-        map.add("client_secret", clientSecret);
+      //  map.add("client_secret", clientSecret);
         map.add("grant_type", grantType);
 
         HttpEntity<MultiValueMap<String, String>> httpEntity = new HttpEntity<>(map, headers);
-        ResponseEntity<LoginResponse> loginResponse = restTemplate.postForEntity(loginUrl, httpEntity, LoginResponse.class);
+        ResponseEntity<LoginResponse> loginResponse = restTemplate.postForEntity(tokenUrl, httpEntity, LoginResponse.class);
 
         return ResponseEntity.status(200).body(loginResponse.getBody());
 
