@@ -20,8 +20,7 @@ public class LoginService {
     private String tokenUrl;
     @Value("${spring.security.oauth2.client.registration.spring-with-test-scope.client-secret}")
     private String clientSecret;
-    @Value("${spring.security.oauth2.client.registration.spring-with-test-scope.authorization-grant-type}")
-    private String grantType;
+
     @Value("${spring.security.oauth2.client.registration.spring-with-test-scope.client-id}")
     private String clientId;
 
@@ -38,7 +37,7 @@ public class LoginService {
         map.add("password", request.getPassword());
         map.add("client_id", clientId);
       //  map.add("client_secret", clientSecret);
-        map.add("grant_type", grantType);
+        map.add("grant_type", "password");
 
         HttpEntity<MultiValueMap<String, String>> httpEntity = new HttpEntity<>(map, headers);
         ResponseEntity<LoginResponse> loginResponse = restTemplate.postForEntity(tokenUrl, httpEntity, LoginResponse.class);

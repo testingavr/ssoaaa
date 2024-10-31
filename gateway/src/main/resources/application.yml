@@ -31,14 +31,16 @@ spring:
           keycloak:
             issuer-uri: http://localhost:8080/realms/demo
             token-uri: http://localhost:8080/realms/demo/protocol/openid-connect/token
+            #authorization-uri: http://localhost:8080/realms/demo/protocol/openid-connect/auth
+            #user-name-attribute: preferred_username
         registration:
           spring-with-test-scope:
             provider: keycloak
             client-id: spring-with-test-scope
             client-secret: IWLSnakHG8aNTWNaWuSj0a11UY4lzxd9
-            authorization-grant-type: password
+            authorization-grant-type: authorization_code
             scope: openid
-            redirect-uri: "{baseUrl}/login/oauth2/code/spring-with-test-scope"
+            redirect-uri: "{baseUrl}/login/oauth2/code/spring-without-test-scope"
 #          keycloak-without-test-scope:
 #            provider: keycloak
 #            client-id: spring-without-test-scope

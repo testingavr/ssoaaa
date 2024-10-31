@@ -32,9 +32,9 @@ import java.util.concurrent.ExecutionException;
 @RestController
 public class GatewayApplication {
 
-    @Autowired
+/*    @Autowired
     ReactiveOAuth2AuthorizedClientManager authorizedClientManager;
-
+*/
     private static final Logger LOGGER = LoggerFactory.getLogger(GatewayApplication.class);
 
     public static void main(String[] args) {
@@ -56,7 +56,12 @@ public class GatewayApplication {
         return Mono.just(session.getId());
     }
 
-
+    @PostMapping("logout")
+    public String logout()
+    {
+        return  "";
+    }
+/*
     @PostMapping("/loginapi")
     public String index(@RequestBody LoginRequest loginRequest) throws ExecutionException, InterruptedException {
         OAuth2AuthorizeRequest authorizeRequest = OAuth2AuthorizeRequest.withClientRegistrationId("spring-with-test-scope")
@@ -74,7 +79,7 @@ return null;
 
      //   return accessToken.getTokenValue();
     }
-
+*/
     @Bean
     public RestTemplate restTemplate() {
         return new RestTemplate();
